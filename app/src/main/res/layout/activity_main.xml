@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/quarter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Quarter: 1"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/main_timer"
+        app:layout_constraintStart_toStartOf="@+id/main_timer"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/main_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:lineSpacingMultiplier="1"
+        android:paddingTop="0pt"
+        android:paddingBottom="0pt"
+        android:text="10:00"
+        android:textColor="@color/lime"
+        android:textSize="120sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/quarter" />
+
+
+    <Button
+        android:id="@+id/team1_players"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Team1"
+        android:textColor="@color/teal_200"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/main_timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/team2_players"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Team2"
+        android:textColor="@color/teal_200"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_timer"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/short_clock"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="4.9"
+        android:textColor="@color/yellow"
+        android:textSize="80sp"
+        app:layout_constraintEnd_toEndOf="@+id/main_timer"
+        app:layout_constraintStart_toStartOf="@+id/main_timer"
+        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+
+
+    <TextView
+        android:id="@+id/team1_score"
+        android:layout_width="210dp"
+        android:layout_height="150dp"
+        android:clickable="false"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:lineSpacingMultiplier="1"
+        android:paddingTop="0pt"
+        android:paddingBottom="0pt"
+        android:text="00"
+        android:textColor="@color/white"
+        android:textSize="120sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/main_timer"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/team1_1"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="+1"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team1_score"
+        app:layout_constraintEnd_toStartOf="@+id/team1_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/team1_min1" />
+
+    <Button
+        android:id="@+id/team1_min1"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="-1"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/team1_score"
+        app:layout_constraintStart_toStartOf="@+id/team1_score" />
+
+    <Button
+        android:id="@+id/team1_2"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="+2"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team1_score"
+        app:layout_constraintEnd_toStartOf="@+id/team1_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/team1_1" />
+
+    <Button
+        android:id="@+id/team1_3"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="+3"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team1_score"
+        app:layout_constraintEnd_toEndOf="@+id/team1_score" />
+
+    <TextView
+        android:id="@+id/team2_score"
+        android:layout_width="210dp"
+        android:layout_height="150dp"
+        android:clickable="false"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="00"
+        android:textColor="@color/white"
+        android:textSize="120sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_timer" />
+
+    <Button
+        android:id="@+id/team2_1"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="+1"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team2_score"
+        app:layout_constraintEnd_toStartOf="@+id/team2_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/team2_min1" />
+
+    <Button
+        android:id="@+id/team2_min1"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="-1"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team2_score"
+        app:layout_constraintStart_toStartOf="@+id/team2_score" />
+
+    <Button
+        android:id="@+id/team2_2"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="+2"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team2_score"
+        app:layout_constraintEnd_toStartOf="@+id/team2_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/team2_1" />
+
+    <Button
+        android:id="@+id/team2_3"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:text="+3"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toTopOf="@+id/team2_score"
+        app:layout_constraintEnd_toEndOf="@+id/team2_score" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team2_foul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team2_timeouts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/main_timer"
+        app:layout_constraintTop_toBottomOf="@+id/team2_players">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="Foul"
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/wistle_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team2_timeouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team2_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/main_timer"
+        app:layout_constraintTop_toBottomOf="@+id/team2_foul">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIMEOUT"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/time_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team1_foul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team1_timeouts"
+        app:layout_constraintEnd_toStartOf="@+id/main_timer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team1_players">
+
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/wistle_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Foul"
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_left"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team1_timeouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team1_1"
+        app:layout_constraintEnd_toStartOf="@+id/main_timer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team1_foul">
+
+        <ImageView
+            android:id="@+id/time_left"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="TIMEOUT"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/time_left"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:id="@+id/reset_short_clock"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/refresh"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/short_clock"
+        app:layout_constraintStart_toEndOf="@+id/team1_score"
+        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+
+    <ImageView
+        android:id="@+id/reset_pause_play"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/pause"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/team2_score"
+        app:layout_constraintStart_toEndOf="@+id/short_clock"
+        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+
+    <ImageView
+        android:id="@+id/team1_pos"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ball"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team1_score"
+        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
+
+    <ImageView
+        android:id="@+id/team2_pos"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ball"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/team2_score"
+        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POSSESION"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/team2_pos"
+        app:layout_constraintStart_toEndOf="@+id/team1_pos"
+        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
+
+    <ImageView
+        android:id="@+id/team1_pos_give"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team1_pos"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/team2_pos_give"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/team2_pos"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

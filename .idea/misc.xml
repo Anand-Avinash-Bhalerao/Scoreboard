@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable-v24/background_rounded_grey.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable-v24/background_rounded_sky_blue.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable-v24/background_rounded_teal.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable-v24/background_rounded_yellow.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/background_rounded.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/ic_baseline_exposure_plus_1_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/left.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/left_red.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/right_red.xml" value="0.22552083333333334" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_main2.xml" value="0.264" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_match_settings.xml" value="0.2" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/dialog_add.xml" value="0.20520833333333333" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/list_item.xml" value="0.4" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/team_player_scores_item.xml" value="0.2" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
