@@ -5,22 +5,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements NameDialog.ExampleDialogListener {
+public class MainActivity extends AppCompatActivity implements NameDialog.ExampleDialogListener, PlayerScoreRecyclerAdapter.OnNoteClickListener, FoulDialog.FoulDialogInterface {
     private static long MAIN_START_TIME_IN_MILLIS = 600000;
     //    private static long MAIN_START_TIME_IN_MILLIS = 10000;
     private static long SHORT_START_TIME_IN_MILLIS = 24000;
@@ -30,9 +31,11 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
     int team1_score = 0;
     int team2_score = 0;
     int currentQuarter = 1;
-    Button t1_1, t1_2, t1_3, t1_min1, t2_1, t2_2, t2_3, t2_min1, team1_name_button, team2_name_button;
+    TextView team1_name_button, team2_name_button;
     TextView t1_score, t2_score, main_timer, short_clock, quarter;
-    ImageView t1PossesionGiver, t2PossesionGiver, t1PossesionBall, t2PossesionBall, refresh, play_pause;
+    ImageView t1PossesionGiver, t2PossesionGiver, refresh, play_pause;
+    ConstraintLayout team1_foul, team2_foul, team1_timeout, team2_timeout;
+    RecyclerView team1, team2;
 
     ArrayList<String> team1Players;
     ArrayList<String> team2Players;
@@ -52,15 +55,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         context = MainActivity.this;
-        //Buttons to increase or decrease scores
-        t1_1 = findViewById(R.id.team1_1);
-        t1_2 = findViewById(R.id.team1_2);
-        t1_3 = findViewById(R.id.team1_3);
-        t1_min1 = findViewById(R.id.team1_min1);
-        t2_1 = findViewById(R.id.team2_1);
-        t2_2 = findViewById(R.id.team2_2);
-        t2_3 = findViewById(R.id.team2_3);
-        t2_min1 = findViewById(R.id.team2_min1);
 
         //TextViews scores and timers
         t1_score = findViewById(R.id.team1_score);
@@ -70,26 +64,32 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
 
         t1PossesionGiver = findViewById(R.id.team1_pos_give);
         t2PossesionGiver = findViewById(R.id.team2_pos_give);
-        t1PossesionBall = findViewById(R.id.team1_pos);
-        t2PossesionBall = findViewById(R.id.team2_pos);
 
         refresh = findViewById(R.id.reset_short_clock);
         play_pause = findViewById(R.id.reset_pause_play);
 
         quarter = findViewById(R.id.quarter);
 
-        team1_name_button = findViewById(R.id.team1_players);
-        team2_name_button = findViewById(R.id.team2_players);
+        team1_name_button = findViewById(R.id.team1_team_name);
+        team2_name_button = findViewById(R.id.team2_team_name);
 
+        team1 = findViewById(R.id.team1_recycler);
+        team2 = findViewById(R.id.team2_recycler);
+
+        team1_foul = findViewById(R.id.team1_foul);
+        team2_foul = findViewById(R.id.team2_foul);
+
+        team1_timeout = findViewById(R.id.team1_timeouts);
+        team2_timeout = findViewById(R.id.team2_timeouts);
 
         Intent intent = getIntent();
         String team1Name = intent.getStringExtra(MatchSettings.TEAM1);
         String team2Name = intent.getStringExtra(MatchSettings.TEAM2);
 
-        if(team1Name.equals("")){
+        if (team1Name.equals("")) {
             team1Name = "Team 1";
         }
-        if(team2Name.equals("")){
+        if (team2Name.equals("")) {
             team2Name = "Team 2";
         }
 
@@ -104,6 +104,20 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         } catch (Exception e) {
             Toast.makeText(this, "Abe values hi nahi dali mahan", Toast.LENGTH_LONG).show();
         }
+
+        team1Players = new ArrayList<>();
+        team1Players.add("ANAND");
+        team1Players.add("AKSHAY");
+        team1Players.add("MUMMY");
+        team1Players.add("PAPA");
+
+        team2Players = new ArrayList<>();
+        team2Players.add("LAXMAN");
+        team2Players.add("RAJAN");
+        team2Players.add("MADHWAN");
+        team2Players.add("ROHIT");
+
+
         team1_name_button.setText(team1Name);
         team2_name_button.setText(team2Name);
 
@@ -120,62 +134,15 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
             team2MemberInfo.add(temp);
         }
 
-
-        t1_1.setOnClickListener(view -> {
-            team1_score += 1;
-            team1_set();
-        });
-        t1_2.setOnClickListener(view -> {
-            team1_score += 2;
-            team1_set();
-        });
-        t1_3.setOnClickListener(view -> {
-            team1_score += 3;
-            team1_set();
-        });
-
-        t1_min1.setOnClickListener(view -> {
-            if (team1_score > 0) {
-                team1_score -= 1;
-                team1_set();
-            } else {
-                Toast.makeText(this, "Score cannot be negative", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        t2_1.setOnClickListener(view -> {
-            team2_score += 1;
-            team2_set();
-        });
-        t2_2.setOnClickListener(view -> {
-            team2_score += 2;
-            team2_set();
-        });
-        t2_3.setOnClickListener(view -> {
-            team2_score += 3;
-            team2_set();
-        });
-        t2_min1.setOnClickListener(view -> {
-            if (team2_score > 0) {
-                team2_score -= 1;
-                team2_set();
-            } else {
-                Toast.makeText(this, "Score cannot be negative", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         t1PossesionGiver.setOnClickListener(view -> {
-            t1PossesionBall.setVisibility(View.VISIBLE);
             t1PossesionGiver.setImageResource(R.drawable.left_red);
             t2PossesionGiver.setImageResource(R.drawable.right);
-            t2PossesionBall.setVisibility(View.INVISIBLE);
+
         });
 
         t2PossesionGiver.setOnClickListener(view -> {
-            t2PossesionBall.setVisibility(View.VISIBLE);
             t1PossesionGiver.setImageResource(R.drawable.left);
             t2PossesionGiver.setImageResource(R.drawable.right_red);
-            t1PossesionBall.setVisibility(View.INVISIBLE);
         });
 
         play_pause.setOnClickListener(view -> {
@@ -183,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         });
 
         refresh.setOnClickListener(view -> {
-            if (mShortTimeLeftInMillis != SHORT_START_TIME_IN_MILLIS)
+            if (mShortTimeLeftInMillis != SHORT_START_TIME_IN_MILLIS && mMainRunning)
                 resetShortTimer();
             else
                 Toast.makeText(this, "PRESS THE PLAY BUTTON TO CONTINUE", Toast.LENGTH_SHORT).show();
@@ -198,6 +165,20 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         team2_name_button.setOnClickListener(view -> {
             openDialog(2);
         });
+
+        PlayerScoreRecyclerAdapter forTeam1 = new PlayerScoreRecyclerAdapter(this, team1MemberInfo, this, 1);
+        team1.setAdapter(forTeam1);
+        team1.setLayoutManager(new LinearLayoutManager(this));
+
+        PlayerScoreRecyclerAdapter forTeam2 = new PlayerScoreRecyclerAdapter(this, team2MemberInfo, this, 2);
+        team2.setAdapter(forTeam2);
+        team2.setLayoutManager(new LinearLayoutManager(this));
+
+        team1_foul.setOnClickListener(view -> {
+            FoulDialog foulDialog = new FoulDialog(team1MemberInfo, 1, this);
+            foulDialog.show(getSupportFragmentManager(), "Example dialog");
+        });
+
     }
 
     public void openDialog(int teamNumber) {
@@ -360,5 +341,58 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
 
 
         Log.d("VALUES_AFTER_CHANGE", val);
+    }
+
+    @Override
+    public void plus1Click(int pos, int teamNo) {
+        if (teamNo == 1) {
+            PersonInfo temp = team1MemberInfo.get(pos);
+            team1_score += 1;
+            t1_score.setText(String.valueOf(team1_score));
+        } else if (teamNo == 2) {
+            PersonInfo temp = team2MemberInfo.get(pos);
+            team2_score += 1;
+            t2_score.setText(String.valueOf(team2_score));
+        }
+    }
+
+    @Override
+    public void plus2Click(int pos, int teamNo) {
+        if (teamNo == 1) {
+            PersonInfo temp = team1MemberInfo.get(pos);
+            team1_score += 2;
+            t1_score.setText(String.valueOf(team1_score));
+        } else if (teamNo == 2) {
+            PersonInfo temp = team2MemberInfo.get(pos);
+            team2_score += 2;
+            t2_score.setText(String.valueOf(team2_score));
+        }
+    }
+
+    @Override
+    public void plus3Click(int pos, int teamNo) {
+        if (teamNo == 1) {
+            PersonInfo temp = team1MemberInfo.get(pos);
+            team1_score += 3;
+            t1_score.setText(String.valueOf(team1_score));
+        } else if (teamNo == 2) {
+            PersonInfo temp = team2MemberInfo.get(pos);
+            team2_score += 3;
+            t2_score.setText(String.valueOf(team2_score));
+        }
+    }
+
+    @Override
+    public void saveChanges(ArrayList<PersonInfo> list, int teamNumber, boolean call) {
+        if (call) {
+            if (teamNumber == 1) {
+                team1MemberInfo = list;
+            } else {
+                team2MemberInfo = list;
+            }
+            for (int i = 0; i < list.size(); i++) {
+                Log.d("AFTER_FOUL",list.get(i).toString());
+            }
+        }
     }
 }

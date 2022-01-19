@@ -11,60 +11,26 @@
         android:id="@+id/quarter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="Quarter: 1"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/main_timer"
         app:layout_constraintEnd_toEndOf="@+id/main_timer"
         app:layout_constraintStart_toStartOf="@+id/main_timer"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/main_timer" />
 
     <TextView
         android:id="@+id/main_timer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="0dp"
-        android:lineSpacingMultiplier="1"
-        android:paddingTop="0pt"
-        android:paddingBottom="0pt"
+        android:layout_height="110dp"
+        android:layout_marginTop="16dp"
         android:text="10:00"
         android:textColor="@color/lime"
-        android:textSize="120sp"
+        android:textSize="100sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/quarter" />
-
-
-    <Button
-        android:id="@+id/team1_players"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Team1"
-        android:textColor="@color/teal_200"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toStartOf="@+id/main_timer"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/team2_players"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Team2"
-        android:textColor="@color/teal_200"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_timer"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/short_clock"
@@ -73,16 +39,79 @@
         android:gravity="center"
         android:text="4.9"
         android:textColor="@color/yellow"
-        android:textSize="80sp"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="@+id/main_timer"
         app:layout_constraintStart_toStartOf="@+id/main_timer"
         app:layout_constraintTop_toBottomOf="@+id/main_timer" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/team1_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_rounded_grey_no_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pos_cons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/short_clock"
+        tools:itemCount="6"
+        tools:listitem="@layout/teams_recycler_score" />
+
+
+    <TextView
+        android:id="@+id/team1_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="TEAM1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quarter"
+        app:layout_constraintEnd_toStartOf="@+id/quarter"
+        app:layout_constraintStart_toEndOf="@id/team1_score" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/team2_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_rounded_grey_no_border"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pos_cons"
+        app:layout_constraintTop_toBottomOf="@+id/short_clock"
+        tools:itemCount="6"
+        tools:listitem="@layout/teams_recycler_score" />
+
+    <TextView
+        android:id="@+id/team2_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="TEAM2"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quarter"
+        app:layout_constraintEnd_toStartOf="@id/team2_score"
+        app:layout_constraintStart_toEndOf="@+id/quarter" />
 
     <TextView
         android:id="@+id/team1_score"
         android:layout_width="210dp"
-        android:layout_height="150dp"
+        android:layout_height="115dp"
         android:clickable="false"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -93,136 +122,106 @@
         android:text="00"
         android:textColor="@color/white"
         android:textSize="120sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/main_timer"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/team1_1"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="+1"
-        android:textColor="@color/white"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team1_foul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/team1_score"
+        app:layout_constraintTop_toBottomOf="@+id/team1_score">
 
-        app:layout_constraintBottom_toTopOf="@+id/team1_score"
-        app:layout_constraintEnd_toStartOf="@+id/team1_2"
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/wistle_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="FOUL"
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_left"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team1_timeouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/team1_min1" />
+        app:layout_constraintStart_toStartOf="@+id/team1_score"
+        app:layout_constraintTop_toBottomOf="@+id/team1_foul">
 
-    <Button
-        android:id="@+id/team1_min1"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="-1"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/team1_score"
-        app:layout_constraintStart_toStartOf="@+id/team1_score" />
+        <ImageView
+            android:id="@+id/time_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/team1_2"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="+2"
-        android:textColor="@color/white"
-
-        app:layout_constraintBottom_toTopOf="@+id/team1_score"
-        app:layout_constraintEnd_toStartOf="@+id/team1_3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/team1_1" />
-
-    <Button
-        android:id="@+id/team1_3"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="+3"
-        android:textColor="@color/white"
-
-        app:layout_constraintBottom_toTopOf="@+id/team1_score"
-        app:layout_constraintEnd_toEndOf="@+id/team1_score" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="TIMEOUT"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/time_left"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.571" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/team2_score"
         android:layout_width="210dp"
-        android:layout_height="150dp"
+        android:layout_height="115dp"
         android:clickable="false"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:lineSpacingMultiplier="1"
+        android:paddingTop="0pt"
+        android:paddingBottom="0pt"
         android:text="00"
         android:textColor="@color/white"
         android:textSize="120sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_timer" />
-
-    <Button
-        android:id="@+id/team2_1"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="+1"
-        android:textColor="@color/white"
-
-        app:layout_constraintBottom_toTopOf="@+id/team2_score"
-        app:layout_constraintEnd_toStartOf="@+id/team2_2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/team2_min1" />
-
-    <Button
-        android:id="@+id/team2_min1"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="-1"
-        android:textColor="@color/white"
-
-        app:layout_constraintBottom_toTopOf="@+id/team2_score"
-        app:layout_constraintStart_toStartOf="@+id/team2_score" />
-
-    <Button
-        android:id="@+id/team2_2"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="+2"
-        android:textColor="@color/white"
-
-        app:layout_constraintBottom_toTopOf="@+id/team2_score"
-        app:layout_constraintEnd_toStartOf="@+id/team2_3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/team2_1" />
-
-    <Button
-        android:id="@+id/team2_3"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:text="+3"
-        android:textColor="@color/white"
-
-        app:layout_constraintBottom_toTopOf="@+id/team2_score"
-        app:layout_constraintEnd_toEndOf="@+id/team2_score" />
+        app:layout_constraintStart_toEndOf="@+id/main_timer"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/team2_foul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/team2_timeouts"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/main_timer"
-        app:layout_constraintTop_toBottomOf="@+id/team2_players">
+        app:layout_constraintEnd_toEndOf="@+id/team2_score"
+        app:layout_constraintTop_toBottomOf="@+id/team2_score">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="Foul"
+            android:text="FOUL"
+            android:gravity="end"
             android:textColor="@color/red"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -232,8 +231,8 @@
 
         <ImageView
             android:id="@+id/img_right"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/wistle_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -244,28 +243,26 @@
         android:id="@+id/team2_timeouts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/team2_1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/team2_score"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/main_timer"
         app:layout_constraintTop_toBottomOf="@+id/team2_foul">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
             android:text="TIMEOUT"
             android:textColor="@color/purple_200"
             android:textSize="32sp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/time_right"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/timer"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -275,139 +272,94 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/team1_foul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/team1_timeouts"
-        app:layout_constraintEnd_toStartOf="@+id/main_timer"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team1_players">
-
-        <ImageView
-            android:id="@+id/img_left"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/wistle_left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="Foul"
-            android:textColor="@color/red"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_left"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/team1_timeouts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/team1_1"
-        app:layout_constraintEnd_toStartOf="@+id/main_timer"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team1_foul">
-
-        <ImageView
-            android:id="@+id/time_left"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/timer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="TIMEOUT"
-            android:textColor="@color/purple_200"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/time_left"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <ImageView
         android:id="@+id/reset_short_clock"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/refresh"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/short_clock"
         app:layout_constraintEnd_toStartOf="@+id/short_clock"
-        app:layout_constraintStart_toEndOf="@+id/team1_score"
-        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+        app:layout_constraintStart_toStartOf="@+id/main_timer"
+        app:layout_constraintTop_toTopOf="@+id/short_clock" />
 
     <ImageView
         android:id="@+id/reset_pause_play"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/pause"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/team2_score"
+        app:layout_constraintBottom_toBottomOf="@+id/short_clock"
+        app:layout_constraintEnd_toEndOf="@+id/main_timer"
         app:layout_constraintStart_toEndOf="@+id/short_clock"
-        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+        app:layout_constraintTop_toTopOf="@+id/short_clock" />
 
-    <ImageView
-        android:id="@+id/team1_pos"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ball"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team1_score"
-        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
-
-    <ImageView
-        android:id="@+id/team2_pos"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ball"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/team2_score"
-        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
-
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pos_cons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="POSSESION"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/team2_pos"
-        app:layout_constraintStart_toEndOf="@+id/team1_pos"
-        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="@id/short_clock"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/short_clock"
+        app:layout_constraintTop_toTopOf="@+id/team1_recycler">
 
-    <ImageView
-        android:id="@+id/team1_pos_give"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team1_pos"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="POSSESION"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/team2_pos_give"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/team2_pos"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <ImageView
+            android:id="@+id/team1_pos_give"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/left"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/team2_pos_give"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/right"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_rounded_grey_no_border"
+        app:layout_constraintBottom_toBottomOf="@+id/team1_recycler"
+        app:layout_constraintEnd_toStartOf="@+id/team2_recycler"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/team1_recycler"
+        app:layout_constraintTop_toBottomOf="@+id/pos_cons">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="6dp"
+            android:text="EDIT"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/edit" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

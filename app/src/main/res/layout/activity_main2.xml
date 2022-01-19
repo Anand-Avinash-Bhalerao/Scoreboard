@@ -11,7 +11,7 @@
         android:id="@+id/quarter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="Quarter: 1"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/main_timer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:includeFontPadding="false"
         android:lineSpacingExtra="0dp"
         android:lineSpacingMultiplier="1"
@@ -33,36 +33,8 @@
         android:textSize="120sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/quarter" />
+        app:layout_constraintTop_toBottomOf="@+id/quarter" />
 
-
-    <Button
-        android:id="@+id/team1_players"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="1"
-        android:textColor="@color/teal_200"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/quarter"
-        app:layout_constraintEnd_toStartOf="@+id/quarter"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/team2_players"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="2"
-        android:textColor="@color/teal_200"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/quarter"
-        app:layout_constraintStart_toEndOf="@+id/quarter"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/short_clock"
@@ -77,13 +49,11 @@
         app:layout_constraintTop_toBottomOf="@+id/main_timer" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/team1_recycler"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/background_rounded_grey"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/main_timer"
@@ -93,272 +63,358 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/recycler_name"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+
                 android:text="player1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/recycler_score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/recycler_plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/recycler_plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/recycler_plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t1p2"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:text="player2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p2score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p2plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p2plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="2"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p2plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="3"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t1p3"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="player3"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p3score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p3plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p3plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p3plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t1p4"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="player4"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p4score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p4plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p4plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="2"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p4plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t1p5"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="player5"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p5score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p5plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+
+                android:gravity="right"
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p5plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t1p5plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/team1_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_rounded_yellow"
-        android:text="team1"
-        android:textColor="@color/orange"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="TEAM1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView13"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@+id/team1_pos"
+        app:layout_constraintTop_toBottomOf="@+id/team1_pos" />
+
 
     <LinearLayout
+        android:id="@+id/team2_recycler"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:layout_marginStart="12dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_timer">
+        app:layout_constraintStart_toEndOf="@id/main_timer">
 
 
         <LinearLayout
@@ -367,252 +423,348 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t2p1"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+
                 android:text="player1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p1score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p1plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p1plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p1plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t2p2"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:text="player2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p2score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p2plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p2plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="2"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p2plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="3"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t2p3"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="player3"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p3score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p3plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p3plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p3plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t2p4"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="player4"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p4score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p4plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p4plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="2"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p4plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/t2p5"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="player5"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p5score"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white" />
+
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p5plus1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+
+                android:gravity="right"
                 android:text="1"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p5plus2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/t2p5plus3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
+
                 android:text="3"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/team2_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="TEAM2"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/team2_pos"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/team2_pos" />
 
     <TextView
         android:id="@+id/team1_score"
         android:layout_width="210dp"
-        android:layout_height="150dp"
+        android:layout_height="115dp"
         android:clickable="false"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -624,15 +776,79 @@
         android:textColor="@color/white"
         android:textSize="120sp"
         app:layout_constraintEnd_toStartOf="@+id/main_timer"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team1_foul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team1_recycler"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/team1_timeouts"
+        app:layout_constraintTop_toBottomOf="@+id/team1_timeouts">
+
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/wistle_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="FOUL"
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_left"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team1_timeouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team1_foul"
+        app:layout_constraintEnd_toStartOf="@+id/main_timer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team1_score">
+
+        <ImageView
+            android:id="@+id/time_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="TIMEOUT"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/time_left"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.571" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/team2_score"
         android:layout_width="210dp"
-        android:layout_height="150dp"
+        android:layout_height="115dp"
         android:clickable="false"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -644,49 +860,118 @@
         android:textColor="@color/white"
         android:textSize="120sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/main_timer"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team2_foul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team2_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/team2_timeouts"
+        app:layout_constraintTop_toBottomOf="@+id/team2_timeouts">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="FOUL"
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/wistle_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/team2_timeouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/team2_foul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/main_timer"
+        app:layout_constraintTop_toBottomOf="@+id/team2_score">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="TIMEOUT"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/time_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/reset_short_clock"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/refresh"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/short_clock"
         app:layout_constraintEnd_toStartOf="@+id/short_clock"
-        app:layout_constraintStart_toEndOf="@+id/team1_score"
-        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+        app:layout_constraintStart_toEndOf="@+id/team1_timeouts"
+        app:layout_constraintTop_toTopOf="@+id/short_clock" />
 
     <ImageView
         android:id="@+id/reset_pause_play"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/pause"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/team2_score"
+        app:layout_constraintBottom_toBottomOf="@+id/short_clock"
+        app:layout_constraintEnd_toStartOf="@+id/team2_timeouts"
         app:layout_constraintStart_toEndOf="@+id/short_clock"
-        app:layout_constraintTop_toBottomOf="@+id/main_timer" />
+        app:layout_constraintTop_toTopOf="@+id/short_clock" />
 
     <ImageView
         android:id="@+id/team1_pos"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ball"
+        android:layout_marginStart="6dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team1_score"
-        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
+        app:layout_constraintEnd_toStartOf="@+id/team1_pos_give"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/team1_recycler"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/team2_pos"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ball"
+        android:layout_marginEnd="6dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/team2_score"
-        app:layout_constraintTop_toBottomOf="@+id/short_clock" />
+        app:layout_constraintEnd_toStartOf="@+id/team2_recycler"
+        app:layout_constraintStart_toEndOf="@+id/team2_pos_give"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -694,8 +979,8 @@
         android:layout_height="wrap_content"
         android:text="POSSESION"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/team2_pos"
-        app:layout_constraintStart_toEndOf="@+id/team1_pos"
+        app:layout_constraintEnd_toStartOf="@+id/team2_recycler"
+        app:layout_constraintStart_toEndOf="@+id/team1_recycler"
         app:layout_constraintTop_toBottomOf="@+id/short_clock" />
 
     <ImageView
@@ -703,18 +988,30 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/team1_pos"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/team1_pos"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/team1_pos" />
 
     <ImageView
         android:id="@+id/team2_pos_give"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/team2_pos"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/team2_pos"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/team2_pos" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VS"
+        android:textColor="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/team2_recycler"
+        app:layout_constraintStart_toEndOf="@+id/team1_recycler"
+        app:layout_constraintTop_toBottomOf="@+id/team1_pos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

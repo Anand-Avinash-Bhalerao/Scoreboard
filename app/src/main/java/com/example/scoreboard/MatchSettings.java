@@ -6,32 +6,27 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 public class MatchSettings extends AppCompatActivity {
 
-    EditText team1Name, team2Name,team1_addName,team2_addName;
-    EditText mainMin,mainSec,shortC,timeout,noOfTimeouts,betweenQ,fouls;
+    EditText team1Name, team2Name, team1_addName, team2_addName;
+    EditText mainMin, mainSec, shortC, timeout, noOfTimeouts, betweenQ, fouls;
     ImageView team1Add, team2Add;
     ImageView play;
     String team1 = "";
     String team2 = "";
-    LinearLayout team1Members,team2Members;
+    LinearLayout team1Members, team2Members;
 
-    HashMap<String,Integer> values;
+    HashMap<String, Integer> values;
 
     public static final String TEAM1 = "TEAM1";
     public static final String TEAM1_ARRAY = "TEAM1_ARRAY";
@@ -48,6 +43,7 @@ public class MatchSettings extends AppCompatActivity {
 
     private ArrayList<String> team1Players;
     private ArrayList<String> team2Players;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,80 +76,136 @@ public class MatchSettings extends AppCompatActivity {
         values = new HashMap<>();
 
 
-
         team1Name.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 team1 = team1Name.getText().toString();
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
 
         team2Name.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 team2 = team2Name.getText().toString();
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
 
         mainMin.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(mainMin.getText().toString());
-                values.put(MAIN_TIMER_MIN,val);
+                String valString = mainMin.getText().toString();
+                int val = 0;
+                if (!valString.equals(""))
+                    val = Integer.parseInt(mainMin.getText().toString());
+                values.put(MAIN_TIMER_MIN, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
         mainSec.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(mainSec.getText().toString());
-                values.put(MAIN_TIMER_SEC,val);
+                String valString = mainSec.getText().toString();
+                int val = 0;
+                if (!valString.equals(""))
+                    val = Integer.parseInt(mainSec.getText().toString());
+                values.put(MAIN_TIMER_SEC, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
         shortC.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(shortC.getText().toString());
-                values.put(SHORT_CLOCK,val);
+                String value = shortC.getText().toString();
+                int val = 0;
+                if(!value.equals(""))
+                val = Integer.parseInt(shortC.getText().toString());
+                values.put(SHORT_CLOCK, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
         timeout.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(timeout.getText().toString());
-                values.put(TIMEOUT,val);
+                String value = timeout.getText().toString();
+                int val = 0;
+                if(!value.equals(""))
+                    val = Integer.parseInt(timeout.getText().toString());
+                values.put(TIMEOUT, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
 
         noOfTimeouts.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(noOfTimeouts.getText().toString());
-                values.put(NUMBER_TIMEOUTS,val);
+                String value = noOfTimeouts.getText().toString();
+                int val = 0;
+                if(!value.equals(""))
+                    val = Integer.parseInt(noOfTimeouts.getText().toString());
+                values.put(NUMBER_TIMEOUTS, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
         betweenQ.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(betweenQ.getText().toString());
-                values.put(QUARTER,val);
+                String value = betweenQ.getText().toString();
+                int val = 0;
+                if(!value.equals(""))
+                val = Integer.parseInt(betweenQ.getText().toString());
+                values.put(QUARTER, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
 
         fouls.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
-                int val = Integer.parseInt(fouls.getText().toString());
-                values.put(FOULS,val);
+                String value = fouls.getText().toString();
+                int val = 0;
+                if(!value.equals(""))
+                    val = Integer.parseInt(fouls.getText().toString());
+                values.put(FOULS, val);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) {}
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         });
 
         team1Add.setOnClickListener(view -> {
@@ -179,8 +231,8 @@ public class MatchSettings extends AppCompatActivity {
         });
     }
 
-    public void addViewTeam1(String name){
-        View itemView = getLayoutInflater().inflate(R.layout.list_item, null,false);
+    public void addViewTeam1(String name) {
+        View itemView = getLayoutInflater().inflate(R.layout.list_item, null, false);
         TextView textViewName = itemView.findViewById(R.id.name_text);
         textViewName.setText(name);
         ImageView delete = itemView.findViewById(R.id.delete_item);
@@ -194,8 +246,8 @@ public class MatchSettings extends AppCompatActivity {
         team1Players.add(name);
     }
 
-    public void addViewTeam2(String name){
-        View itemView = getLayoutInflater().inflate(R.layout.list_item, null,false);
+    public void addViewTeam2(String name) {
+        View itemView = getLayoutInflater().inflate(R.layout.list_item, null, false);
         TextView textViewName = itemView.findViewById(R.id.name_text);
         textViewName.setText(name);
         ImageView delete = itemView.findViewById(R.id.delete_item);

@@ -61,4 +61,31 @@ public class PersonInfo {
     public void setFouls(int fouls) {
         this.fouls = fouls;
     }
+
+    public void inc1(){
+        score +=1;
+        plus1 +=1;
+    }
+
+    public void inc2(){
+        score +=2;
+        plus2 +=1;
+    }
+
+    public void inc3(){
+        score +=3;
+        plus3 +=1;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonInfo{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                ", plus1=" + plus1 +
+                ", plus2=" + plus2 +
+                ", plus3=" + plus3 +
+                ", fouls=" + fouls +
+                '}';
+    }
 }
