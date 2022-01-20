@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,12 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class FoulDialog extends AppCompatDialogFragment {
+public class FoulDialog extends AppCompatDialogFragment implements FoulAdapter.MadeChanges{
     private RecyclerView recyclerView;
     private ArrayList<PersonInfo> info;
     private ArrayList<PersonInfo> ORIGNAL;
     private int teamNumber;
     private FoulDialogInterface listener;
+    private boolean changesDone;
     Context context;
     public FoulDialog(ArrayList<PersonInfo> containsInfo, int teamNumber, Context context){
         info = containsInfo;
@@ -38,12 +40,15 @@ public class FoulDialog extends AppCompatDialogFragment {
             ORIGNAL.add(toAdd);
         }
         this.context = context;
+        this.changesDone = false;
         this.teamNumber = teamNumber;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+//        Toast.makeText(context, "Created dialog", Toast.LENGTH_SHORT).show();
+        this.changesDone = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add,null);
@@ -52,18 +57,18 @@ public class FoulDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Whistle", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.saveChanges(info,teamNumber,true);
+                            listener.saveChanges(info, teamNumber, true,changesDone);
                     }
                 })
                 .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.saveChanges(ORIGNAL,teamNumber,false);
+                        listener.saveChanges(ORIGNAL, teamNumber, false, false);
                     }
                 });
 
         recyclerView = view.findViewById(R.id.name_recyclerView);
-        FoulAdapter recyclerAdapter = new FoulAdapter(context, info);
+        FoulAdapter recyclerAdapter = new FoulAdapter(context, info,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(recyclerAdapter);
         return builder.create();
@@ -80,7 +85,13 @@ public class FoulDialog extends AppCompatDialogFragment {
         }
     }
 
+    @Override
+    public void madeSomeChanges(boolean state) {
+        this.changesDone = true;
+    }
+
     public interface FoulDialogInterface {
-        void saveChanges(ArrayList<PersonInfo> list,int teamNumber,boolean call);
+        void saveChanges(ArrayList<PersonInfo> list,int teamNumber,boolean call,boolean changesDone);
     }
 }
+

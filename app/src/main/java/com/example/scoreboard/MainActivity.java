@@ -2,9 +2,9 @@ package com.example.scoreboard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,15 +25,24 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
     private static long MAIN_START_TIME_IN_MILLIS = 600000;
     //    private static long MAIN_START_TIME_IN_MILLIS = 10000;
     private static long SHORT_START_TIME_IN_MILLIS = 24000;
+    private static final long SHORT_14_START_TIME_IN_MILLIS = 14000;
     private long mMainTimeLeftInMillis = MAIN_START_TIME_IN_MILLIS;
     private long mShortTimeLeftInMillis = SHORT_START_TIME_IN_MILLIS;
     private boolean mMainRunning = true;
+    private MediaPlayer referee, buzzer;
     int team1_score = 0;
     int team2_score = 0;
     int currentQuarter = 1;
-    TextView team1_name_button, team2_name_button;
+
+    int team1_timeoutsCounter = 0;
+    int team2_timeoutsCounter = 0;
+    int timeout_time = 20;
+    int noOfTimeouts = 5;
+
+
+    TextView team1_name_button, team2_name_button, t1_timeoutLeft, t2_timeoutLeft;
     TextView t1_score, t2_score, main_timer, short_clock, quarter;
-    ImageView t1PossesionGiver, t2PossesionGiver, refresh, play_pause;
+    ImageView t1PossesionGiver, t2PossesionGiver, refresh, play_pause,refresh14;
     ConstraintLayout team1_foul, team2_foul, team1_timeout, team2_timeout;
     RecyclerView team1, team2;
 
@@ -66,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         t2PossesionGiver = findViewById(R.id.team2_pos_give);
 
         refresh = findViewById(R.id.reset_short_clock);
+        refresh14 = findViewById(R.id.reset_short_clock_14);
         play_pause = findViewById(R.id.reset_pause_play);
 
         quarter = findViewById(R.id.quarter);
@@ -81,6 +91,13 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
 
         team1_timeout = findViewById(R.id.team1_timeouts);
         team2_timeout = findViewById(R.id.team2_timeouts);
+
+        t1_timeoutLeft = findViewById(R.id.team1_timeout_left);
+        t2_timeoutLeft = findViewById(R.id.team2_timeout_left);
+
+
+        referee = MediaPlayer.create(this, R.raw.referee);
+        buzzer = MediaPlayer.create(this, R.raw.buzzer);
 
         Intent intent = getIntent();
         String team1Name = intent.getStringExtra(MatchSettings.TEAM1);
@@ -101,21 +118,30 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
             SHORT_START_TIME_IN_MILLIS = values.get(MatchSettings.SHORT_CLOCK) * 1000;
             mMainTimeLeftInMillis = MAIN_START_TIME_IN_MILLIS;
             mShortTimeLeftInMillis = SHORT_START_TIME_IN_MILLIS;
+
         } catch (Exception e) {
             Toast.makeText(this, "Abe values hi nahi dali mahan", Toast.LENGTH_LONG).show();
         }
+//        noOfTimeouts = intent.getIntExtra(MatchSettings.NUMBER_TIMEOUTS, 5);
+//        timeout_time = intent.getIntExtra(MatchSettings.TIMEOUT, 10);
+        if (values.containsKey(MatchSettings.NUMBER_TIMEOUTS))
+            noOfTimeouts = values.get(MatchSettings.NUMBER_TIMEOUTS);
+        if (values.containsKey(MatchSettings.TIMEOUT))
+            timeout_time = values.get(MatchSettings.TIMEOUT);
+        t1_timeoutLeft.setText(String.valueOf(noOfTimeouts - team1_timeoutsCounter));
+        t2_timeoutLeft.setText(String.valueOf(noOfTimeouts - team2_timeoutsCounter));
 
-        team1Players = new ArrayList<>();
-        team1Players.add("ANAND");
-        team1Players.add("AKSHAY");
-        team1Players.add("MUMMY");
-        team1Players.add("PAPA");
-
-        team2Players = new ArrayList<>();
-        team2Players.add("LAXMAN");
-        team2Players.add("RAJAN");
-        team2Players.add("MADHWAN");
-        team2Players.add("ROHIT");
+//        team1Players = new ArrayList<>();
+//        team1Players.add("ANAND");
+//        team1Players.add("AKSHAY");
+//        team1Players.add("MUMMY");
+//        team1Players.add("PAPA");
+//
+//        team2Players = new ArrayList<>();
+//        team2Players.add("LAXMAN");
+//        team2Players.add("RAJAN");
+//        team2Players.add("MADHWAN");
+//        team2Players.add("ROHIT");
 
 
         team1_name_button.setText(team1Name);
@@ -145,9 +171,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
             t2PossesionGiver.setImageResource(R.drawable.right_red);
         });
 
-        play_pause.setOnClickListener(view -> {
-            setPlay_pause();
-        });
+        play_pause.setOnClickListener(view -> setPlay_pause());
 
         refresh.setOnClickListener(view -> {
             if (mShortTimeLeftInMillis != SHORT_START_TIME_IN_MILLIS && mMainRunning)
@@ -159,12 +183,8 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         startShortTimer();
         startMainTimer();
 
-        team1_name_button.setOnClickListener(view -> {
-            openDialog(1);
-        });
-        team2_name_button.setOnClickListener(view -> {
-            openDialog(2);
-        });
+        team1_name_button.setOnClickListener(view -> openDialog(1));
+        team2_name_button.setOnClickListener(view -> openDialog(2));
 
         PlayerScoreRecyclerAdapter forTeam1 = new PlayerScoreRecyclerAdapter(this, team1MemberInfo, this, 1);
         team1.setAdapter(forTeam1);
@@ -179,6 +199,40 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
             foulDialog.show(getSupportFragmentManager(), "Example dialog");
         });
 
+        team2_foul.setOnClickListener(view -> {
+            FoulDialog foulDialog = new FoulDialog(team2MemberInfo, 2, this);
+            foulDialog.show(getSupportFragmentManager(), "Example dialog");
+        });
+
+        team1_timeout.setOnClickListener(view -> {
+            if (team1_timeoutsCounter < noOfTimeouts) {
+                TimeoutDialog timeoutDialog = new TimeoutDialog(1, this, timeout_time, true);
+                timeoutDialog.show(getSupportFragmentManager(), "TEMP");
+                team1_timeoutsCounter++;
+                setPause();
+            } else {
+                Toast.makeText(this, "No timeouts left! :(", Toast.LENGTH_SHORT).show();
+            }
+            t1_timeoutLeft.setText(String.valueOf(noOfTimeouts - team1_timeoutsCounter));
+        });
+        team2_timeout.setOnClickListener(view -> {
+            if (team2_timeoutsCounter < noOfTimeouts) {
+                TimeoutDialog timeoutDialog = new TimeoutDialog(2, this, timeout_time, true);
+                timeoutDialog.show(getSupportFragmentManager(), "TEMP");
+                team2_timeoutsCounter++;
+                setPause();
+            } else {
+                Toast.makeText(this, "No timeouts left! :(", Toast.LENGTH_SHORT).show();
+            }
+            t2_timeoutLeft.setText(String.valueOf(noOfTimeouts - team2_timeoutsCounter));
+
+        });
+
+        refresh14.setOnClickListener(view -> {
+            resetShortTimer14();
+        });
+
+
     }
 
     public void openDialog(int teamNumber) {
@@ -189,26 +243,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
             NameDialog nameDialog = new NameDialog(team2MemberInfo, 2, this);
             nameDialog.show(getSupportFragmentManager(), "Example dialog");
         }
-    }
-
-    public void team1_set() {
-        String toSet = "";
-        if (team1_score < 10) {
-            toSet = "0" + team1_score;
-        } else {
-            toSet = String.valueOf(team1_score);
-        }
-        t1_score.setText(toSet);
-    }
-
-    public void team2_set() {
-        String toSet = "";
-        if (team2_score < 10) {
-            toSet = "0" + team2_score;
-        } else {
-            toSet = String.valueOf(team2_score);
-        }
-        t2_score.setText(toSet);
     }
 
     private void updateCountDownText() {
@@ -228,14 +262,18 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
 
             @Override
             public void onFinish() {
+                buzzer.start();
                 currentQuarter++;
                 if (currentQuarter <= 4) {
-                    quarter.setText(String.valueOf("Quarter: " + currentQuarter));
-                    pauseMainTimer();
+                    quarter.setText("Quarter: " + currentQuarter);
+//                    pauseMainTimer();
                     mMainTimeLeftInMillis = MAIN_START_TIME_IN_MILLIS;
                     mShortTimeLeftInMillis = SHORT_START_TIME_IN_MILLIS;
-                    startMainTimer();
-                    resetShortTimer();
+                    TimeoutDialog timeoutDialog = new TimeoutDialog(0, MainActivity.this, timeout_time, false);
+                    timeoutDialog.show(getSupportFragmentManager(), "TEMP");
+                    setPause();
+//                    startMainTimer();
+//                    resetShortTimer();
                 } else {
                     pauseShortTimer();
                     if (team1_score > team2_score)
@@ -272,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
 
             @Override
             public void onFinish() {
+                buzzer.start();
                 mShortTimeLeftInMillis = 0;
                 setPlay_pause();
             }
@@ -298,6 +337,14 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         startShortTimer();
     }
 
+    public void resetShortTimer14(){
+        short_clock.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+        pauseShortTimer();
+        mMainRunning = true;
+        mShortTimeLeftInMillis = SHORT_14_START_TIME_IN_MILLIS;
+        startShortTimer();
+    }
+
     public void setPlay_pause() {
         if (mShortTimeLeftInMillis == 0) {
             mShortTimeLeftInMillis = SHORT_START_TIME_IN_MILLIS;
@@ -315,42 +362,46 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
         }
     }
 
+    public void setPause(){
+        if (mShortTimeLeftInMillis == 0) {
+            mShortTimeLeftInMillis = SHORT_START_TIME_IN_MILLIS;
+        }
+        if (mMainRunning) {
+            pauseMainTimer();
+            pauseShortTimer();
+            play_pause.setImageResource(R.drawable.play);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(MainActivity.this)
                 .setIcon(R.drawable.ic_baseline_error_outline_24)
                 .setMessage("Are you sure you want to stop the timer?")
-                .setPositiveButton("YES", (dialogInterface, i) -> finish())
+                .setPositiveButton("YES", (dialogInterface, i) -> {
+                    referee.stop();
+                    buzzer.stop();
+                    finish();
+                })
                 .setNegativeButton("NO", (dialogInterface, i) -> dialogInterface.dismiss()).show();
     }
 
     @Override
     public void applyChanges(ArrayList<PersonInfo> list, int teamNumber) {
-        String val = "\n";
         if (teamNumber == 1) {
             team1MemberInfo = list;
-            for (int i = 0; i < team1MemberInfo.size(); i++) {
-                val += team1MemberInfo.get(i).getName() + ": " + team1MemberInfo.get(i).getScore() + "\n";
-            }
         } else {
             team2MemberInfo = list;
-            for (int i = 0; i < team2MemberInfo.size(); i++) {
-                val += team2MemberInfo.get(i).getName() + ": " + team2MemberInfo.get(i).getScore() + "\n";
-            }
         }
 
-
-        Log.d("VALUES_AFTER_CHANGE", val);
     }
 
     @Override
     public void plus1Click(int pos, int teamNo) {
         if (teamNo == 1) {
-            PersonInfo temp = team1MemberInfo.get(pos);
             team1_score += 1;
             t1_score.setText(String.valueOf(team1_score));
         } else if (teamNo == 2) {
-            PersonInfo temp = team2MemberInfo.get(pos);
             team2_score += 1;
             t2_score.setText(String.valueOf(team2_score));
         }
@@ -359,11 +410,9 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
     @Override
     public void plus2Click(int pos, int teamNo) {
         if (teamNo == 1) {
-            PersonInfo temp = team1MemberInfo.get(pos);
             team1_score += 2;
             t1_score.setText(String.valueOf(team1_score));
         } else if (teamNo == 2) {
-            PersonInfo temp = team2MemberInfo.get(pos);
             team2_score += 2;
             t2_score.setText(String.valueOf(team2_score));
         }
@@ -372,27 +421,30 @@ public class MainActivity extends AppCompatActivity implements NameDialog.Exampl
     @Override
     public void plus3Click(int pos, int teamNo) {
         if (teamNo == 1) {
-            PersonInfo temp = team1MemberInfo.get(pos);
             team1_score += 3;
             t1_score.setText(String.valueOf(team1_score));
         } else if (teamNo == 2) {
-            PersonInfo temp = team2MemberInfo.get(pos);
             team2_score += 3;
             t2_score.setText(String.valueOf(team2_score));
         }
     }
 
     @Override
-    public void saveChanges(ArrayList<PersonInfo> list, int teamNumber, boolean call) {
+    public void saveChanges(ArrayList<PersonInfo> list, int teamNumber, boolean call, boolean changesDone) {
         if (call) {
             if (teamNumber == 1) {
                 team1MemberInfo = list;
             } else {
                 team2MemberInfo = list;
             }
-            for (int i = 0; i < list.size(); i++) {
-                Log.d("AFTER_FOUL",list.get(i).toString());
+            if (changesDone) {
+                //make sound
+                referee.start();
+                Toast.makeText(this, "MAKE SOUND", Toast.LENGTH_SHORT).show();
             }
+            setPlay_pause();
+        } else {
+            Toast.makeText(this, "No Whistle", Toast.LENGTH_SHORT).show();
         }
     }
 }

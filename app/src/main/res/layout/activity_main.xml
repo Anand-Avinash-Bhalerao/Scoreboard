@@ -165,11 +165,13 @@
         app:layout_constraintStart_toStartOf="@+id/team1_score"
         app:layout_constraintTop_toBottomOf="@+id/team1_foul">
 
-        <ImageView
-            android:id="@+id/time_left"
+        <TextView
+            android:id="@+id/team1_timeout_left"
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/timer"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -185,9 +187,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/time_left"
+            app:layout_constraintStart_toEndOf="@id/team1_timeout_left"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintVertical_bias="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -220,8 +222,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="FOUL"
             android:gravity="end"
+            android:text="FOUL"
             android:textColor="@color/red"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -259,12 +261,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/time_right"
+        <TextView
+            android:id="@+id/team2_timeout_left"
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:gravity="center"
             android:src="@drawable/timer"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/textView2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -282,6 +287,26 @@
         app:layout_constraintEnd_toStartOf="@+id/short_clock"
         app:layout_constraintStart_toStartOf="@+id/main_timer"
         app:layout_constraintTop_toTopOf="@+id/short_clock" />
+
+    <ImageView
+        android:id="@+id/reset_short_clock_14"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/refresh"
+        app:layout_constraintEnd_toStartOf="@+id/reset_short_clock"
+        app:layout_constraintTop_toTopOf="@+id/reset_short_clock" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="14"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="@id/reset_short_clock_14"
+        app:layout_constraintEnd_toEndOf="@id/reset_short_clock_14"
+        app:layout_constraintTop_toTopOf="@id/reset_short_clock_14"
+        app:layout_constraintBottom_toBottomOf="@id/reset_short_clock_14"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id="@+id/reset_pause_play"

@@ -134,8 +134,8 @@ public class MatchSettings extends AppCompatActivity {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 String value = shortC.getText().toString();
                 int val = 0;
-                if(!value.equals(""))
-                val = Integer.parseInt(shortC.getText().toString());
+                if (!value.equals(""))
+                    val = Integer.parseInt(shortC.getText().toString());
                 values.put(SHORT_CLOCK, val);
             }
 
@@ -149,7 +149,7 @@ public class MatchSettings extends AppCompatActivity {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 String value = timeout.getText().toString();
                 int val = 0;
-                if(!value.equals(""))
+                if (!value.equals(""))
                     val = Integer.parseInt(timeout.getText().toString());
                 values.put(TIMEOUT, val);
             }
@@ -165,7 +165,7 @@ public class MatchSettings extends AppCompatActivity {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 String value = noOfTimeouts.getText().toString();
                 int val = 0;
-                if(!value.equals(""))
+                if (!value.equals(""))
                     val = Integer.parseInt(noOfTimeouts.getText().toString());
                 values.put(NUMBER_TIMEOUTS, val);
             }
@@ -180,8 +180,8 @@ public class MatchSettings extends AppCompatActivity {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 String value = betweenQ.getText().toString();
                 int val = 0;
-                if(!value.equals(""))
-                val = Integer.parseInt(betweenQ.getText().toString());
+                if (!value.equals(""))
+                    val = Integer.parseInt(betweenQ.getText().toString());
                 values.put(QUARTER, val);
             }
 
@@ -196,7 +196,7 @@ public class MatchSettings extends AppCompatActivity {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 String value = fouls.getText().toString();
                 int val = 0;
-                if(!value.equals(""))
+                if (!value.equals(""))
                     val = Integer.parseInt(fouls.getText().toString());
                 values.put(FOULS, val);
             }

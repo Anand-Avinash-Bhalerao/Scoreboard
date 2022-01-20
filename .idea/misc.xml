@@ -16,15 +16,17 @@
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/left_red.xml" value="0.22552083333333334" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/refresh.xml" value="0.22552083333333334" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/drawable/right_red.xml" value="0.22552083333333334" />
-        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_main2.xml" value="0.264" />
-        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_match_settings.xml" value="0.2" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_match_settings.xml" value="0.136" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/activity_set_defaults.xml" value="0.176" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/dialog_add.xml" value="0.20520833333333333" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/foul_dialog.xml" value="0.12960526315789472" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/foul_dialog_item.xml" value="0.176" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/list_item.xml" value="0.4" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/team_player_scores_item.xml" value="0.2" />
         <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/teams_recycler_score.xml" value="0.2" />
+        <entry key="..\:/sare isme hi store kar ab/ScoreBoard/app/src/main/res/layout/timeout_dialog.xml" value="0.12960526315789472" />
       </map>
     </option>
   </component>

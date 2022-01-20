@@ -822,7 +822,7 @@
         app:layout_constraintTop_toBottomOf="@+id/team1_score">
 
         <ImageView
-            android:id="@+id/time_left"
+            android:id="@+id/team1_timeout_left"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/timer"
@@ -840,7 +840,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/time_left"
+            app:layout_constraintStart_toEndOf="@id/team1_timeout_left"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.571" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -917,7 +917,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/time_right"
+            android:id="@+id/team2_timeout_left"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="12dp"

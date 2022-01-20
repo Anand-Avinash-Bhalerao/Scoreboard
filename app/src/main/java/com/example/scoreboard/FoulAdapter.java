@@ -16,14 +16,16 @@ import java.util.List;
 public class FoulAdapter extends RecyclerView.Adapter<FoulAdapter.ViewHolder> {
     private Context context;
     private List<PersonInfo> list;
+    private MadeChanges madeChanges;
 
-    public FoulAdapter(Context context, List<PersonInfo> list) {
+    public FoulAdapter(Context context, List<PersonInfo> list,MadeChanges madeChanges) {
         this.context = context;
         this.list = list;
+        this.madeChanges = madeChanges;
     }
     @NonNull
     @Override
-    public FoulAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FoulAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType ) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.foul_dialog_item, parent, false);
         FoulAdapter.ViewHolder holder = new FoulAdapter.ViewHolder(view);
         return holder;
@@ -42,6 +44,7 @@ public class FoulAdapter extends RecyclerView.Adapter<FoulAdapter.ViewHolder> {
             current += 1;
             fouls.setText(String.valueOf(current));
             list.get(position).setFouls(list.get(position).getFouls()+1);
+            madeChanges.madeSomeChanges(true);
         });
 
     }
@@ -62,5 +65,10 @@ public class FoulAdapter extends RecyclerView.Adapter<FoulAdapter.ViewHolder> {
             plus1 = itemView.findViewById(R.id.plus1);
             fouls = itemView.findViewById(R.id.player_fouls);
         }
+    }
+
+
+    public interface MadeChanges{
+        public void madeSomeChanges(boolean state);
     }
 }
